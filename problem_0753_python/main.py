@@ -1,7 +1,5 @@
 
 
-
-
 def iterate_a_b_c(p):
 
     for a in range(1, p):
@@ -16,11 +14,22 @@ def satisfy_equation(a, b, c, p):
     rhs = (c ** 3 ) % p
 
     is_equal = bool((lhs % p) == (rhs % p))
-    #if is_equal:
-    #    print(f"{a}^3 + {b} ^ 3 = {lhs} == {rhs} = {c}^3")
-    #else:
-    #    print(f"{a}^3 + {b} ^ 3 = {lhs} <> {rhs} = {c}^3")
     return is_equal
+
+
+def get_prime_list(limit):
+
+    prime_list = []
+    for n in range(2, limit + 1):
+        is_prime = True
+        for p in prime_list:
+            if n % p == 0:
+                is_prime = False
+                break
+        if is_prime:
+            prime_list.append(n)
+    
+    return prime_list
 
 
 def F(p):
@@ -31,7 +40,9 @@ def F(p):
             count += 1
     return count
 
+
 print("F(5) = {}".format(F(5)))
 print("F(7) = {}".format(F(7))) 
-print("F(1000) = {}".format(F(1000))) 
+prime_list = get_prime_list(6000000)
+print("Prime numbers: {} ({})".format(prime_list, len(prime_list)))
 
